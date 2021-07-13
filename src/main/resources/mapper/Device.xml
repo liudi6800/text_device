@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--上面2行的是约束依赖，固定照抄就好-->
+<!--下面的才是要自己编写的地方-->
+<!--写mapper的配置文件第一步就是要写<mapper></mapper>标签-->
+<!--<mapper></mapper>标签里包含着各个CURD操作的SQL语句-->
+<mapper namespace="org.example.dao.DeviceDao">
+
+
+   <!--插入语句-->
+   <insert id="addDevice" parameterType="org.example.model.Device" useGeneratedKeys="true" keyProperty="id">
+      insert into textdevice(id,name,type,info)values(#{id,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{type,jdbcType=INTEGER},#{info,jdbcType=VARCHAR})/*SQL语句*/
+   </insert>
+
+   <!--删除语句-->
+   <delete id="deleteDevice" parameterType="java.lang.Integer">
+      delete from textdevice where id =#{id,jdbcType=INTEGER}
+   </delete>
+
+
+   <!--修改语句-->
+   <update id="updateDevice" parameterType="org.example.model.Device">
+      update textdevice set name=#{name,jdbcType=VARCHAR},type=#{type,jdbcType=INTEGER},info=#{info,jdbcType=VARCHAR}
+      where id=#{id,jdbcType=INTEGER}
+   </update>
+
+   <select id="getDevice" resultType="org.example.model.Device">
+      select * from textdevice
+   </select>     
+
+   <!--查找语句-->
+   <select id="getDeviceByName" parameterType="java.lang.String" resultType="org.example.model.Device">
+      select * from textdevice where name = #{name,jdbcType=VARCHAR}
+   </select>
+
+</mapper>
