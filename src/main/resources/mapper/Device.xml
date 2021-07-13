@@ -26,7 +26,11 @@
 
    <select id="getDevice" resultType="org.example.model.Device">
       select * from textdevice
-   </select>     
+   </select>
+
+
+
+
 
    <!--查找语句-->
    <select id="getDeviceByName" parameterType="java.lang.String" resultType="org.example.model.Device">
